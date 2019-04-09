@@ -56,7 +56,7 @@ Indexes `0`, `1`, `3`, `7` have an offset `0`...
 # EXAMPLE
 
 ```cpp
-#include "flat-tree.hxx"
+#include "index.hxx"
 #include <vector>
 #include <string>
 
