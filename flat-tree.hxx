@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <memory>
-#include <iostream>
 
 namespace flatTree {
   size_t T0 = 0;

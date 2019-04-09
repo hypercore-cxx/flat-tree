@@ -4,7 +4,7 @@ A series of functions to map a binary tree to a list.
 # USAGE
 
 ```cpp
-#include "./flat-tree.hxx"
+#include "flat-tree.hxx"
 ```
 
 # EXAMPLE
