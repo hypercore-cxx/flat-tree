@@ -1,9 +1,6 @@
 #include "./flat-tree.hxx"
 
-#include <istream>
 #include <iostream>
-
-#define PRINT(message) std::cout << "# " << (message) << std::endl;
 
 #define ASSERT(message, ...) do { \
   if(!(__VA_ARGS__)) { \
