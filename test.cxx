@@ -1,6 +1,8 @@
 #include "./flat-tree.hxx"
 
 #include <iostream>
+#include <vector>
+#include <string>
 
 #define ASSERT(message, ...) do { \
   if(!(__VA_ARGS__)) { \
@@ -142,4 +144,23 @@ int main() {
   }
 
   ASSERT("PLAN == COUNT", plan == count)
+
+  {
+    std::vector<std::string> list(4);
+
+    auto i = flatTree::index(0, 0); // get array index for depth: 0, offset: 0
+    auto j = flatTree::index(1, 0); // get array index for depth: 2, offset: 0
+
+    // use these indexes to store some data
+
+    list[i] = "a";
+    list[j] = "b";
+
+    auto p = flatTree::parent(j);
+    list[p] = "parent of a and b";
+
+    for (const auto& i: list) {
+      std::cout << i << ' ' << std::endl;
+    }
+  }
 }
