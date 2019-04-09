@@ -3,6 +3,7 @@
 A series of functions to map a binary tree to a list. This is a port of
 [this](https://github.com/mafintosh/flat-tree) library and matches the tests.
 
+
 # USAGE
 
 You can represent a binary tree in a simple flat list using the following
@@ -51,8 +52,8 @@ Indexes `0`, `1`, `3`, `7` have an offset `0`...
 0   (2)   4   6    10   12    14    15
 ```
 
-This module exposes a series of functions to help you build and maintain
-this data structure.
+
+# EXAMPLE
 
 ```cpp
 #include "flat-tree.hxx"
@@ -77,12 +78,14 @@ for (const auto& i: list) {
 }
 ```
 
+
 # TESTING
 
 ```bash
 c++ test.cxx -o test -std-c++2a
 ./test
 ```
+
 
 ## See also
 
@@ -93,6 +96,7 @@ c++ test.cxx -o test -std-c++2a
 - [bcomnes/flattree][ftg]: A port of the node module to Go.
 
 ## License
+
 
 MIT
 
