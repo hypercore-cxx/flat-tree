@@ -87,7 +87,7 @@ c++ test.cxx -o test -std-c++2a
 ```
 
 
-## See also
+# SEE ALSO
 
 - [mafintosh/flat-tree][rs]: A series of functions to map a binary tree to a list.
 - [mafintosh/print-flat-tree][flat-tree]: A cli that can pretty print flat-trees.
@@ -95,8 +95,8 @@ c++ test.cxx -o test -std-c++2a
 - [datrs/flat-tree][rs]: A port of the node module to rust.
 - [bcomnes/flattree][ftg]: A port of the node module to Go.
 
-## License
 
+# LICENSE
 
 MIT
 
