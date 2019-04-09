@@ -1,4 +1,5 @@
 # SYNOPSIS
+
 A series of functions to map a binary tree to a list.
 
 # USAGE
@@ -8,10 +9,18 @@ A series of functions to map a binary tree to a list.
 ```
 
 # EXAMPLE
+
 ```cpp
 flatTree::Iterator it;
 
 cout << it.parent() << endl;
+```
+
+# TESTING
+
+```bash
+c++ test.cxx -o test -std-c++2a
+./test
 ```
 
 ## See also
