@@ -3,10 +3,12 @@
   "description": "A series of functions to map a binary tree to a list.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heapwolf/cxx-flat-tree.git"
+    "url": "git+https://github.com/datcxx/cxx-flat-tree.git"
   },
-  "main": "index.hxx",
   "scripts": {
     "test": "c++ test.cxx -o test/test -std-c++2a && ./test/test"
-  }
+  },
+  "files": [
+    "index.hxx"
+  ]
 }
