@@ -81,9 +81,10 @@ for (const auto& i: list) {
 
 # TESTING
 
+Using the `datcxx` project [`build`][0] tool, run the following command.
+
 ```bash
-c++ test.cxx -o test -std-c++2a
-./test
+build run test
 ```
 
 
@@ -100,6 +101,7 @@ c++ test.cxx -o test -std-c++2a
 
 MIT
 
+[0]:https://github.com/datcxx/build
 [print]: https://github.com/mafintosh/print-flat-tree
 [flat-tree]: https://github.com/mafintosh/flat-tree
 [rs]: https://github.com/datrs/flat-tree
