@@ -6,7 +6,7 @@
     "url": "git+https://github.com/datcxx/cxx-flat-tree.git"
   },
   "scripts": {
-    "test": "c++ test.cxx -o test/test -std-c++2a && ./test/test"
+    "test": "c++ test/index.cxx -o test/index -std=c++2a && ./test/index"
   },
   "files": [
     "index.hxx"
