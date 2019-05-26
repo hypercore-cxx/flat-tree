@@ -5,6 +5,22 @@ A series of functions to map a binary tree to a list. This is a port of
 
 
 # USAGE
+This module is designed to work with the [`datcxx`][0] build tool. To add this
+module to your project us the following command...
+
+```bash
+build add heapwolf/flat-tree
+```
+
+
+# TEST
+
+```bash
+build test
+```
+
+
+# USAGE
 
 You can represent a binary tree in a simple flat list using the following
 structure.
@@ -76,15 +92,6 @@ list[p] = "parent of a and b";
 for (const auto& i: list) {
   std::cout << i << ' ' << std::endl;
 }
-```
-
-
-# TESTING
-
-Using the `datcxx` project [`build`][0] tool, run the following command.
-
-```bash
-build run test
 ```
 
 
