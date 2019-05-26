@@ -9,7 +9,7 @@ This module is designed to work with the [`datcxx`][0] build tool. To add this
 module to your project us the following command...
 
 ```bash
-build add heapwolf/flat-tree
+build add datcxx/flat-tree
 ```
 
 
