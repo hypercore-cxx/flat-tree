@@ -7,11 +7,11 @@
 namespace Hyper {
   namespace Core {
     namespace FlatTree {
-      size_t T0 = 0;
-      size_t T1 = 1;
-      size_t T2 = 2;
-      size_t T30 = 30;
-      size_t T31 = 30;
+      size_t constexpr T0 = 0;
+      size_t constexpr T1 = 1;
+      size_t constexpr T2 = 2;
+      size_t constexpr T30 = 30;
+      size_t constexpr T31 = 31;
 
       auto rightShift (size_t n) {
         return (n - (n & T1)) / T2;
@@ -30,7 +30,7 @@ namespace Hyper {
       }
 
       auto twoPow (size_t n) {
-        if (n < T30) {
+        if (n < T31) {
           return T1 << n;
         } else {
           return ((T1 << T30) * (T1 << (n - T30)));
@@ -168,7 +168,7 @@ namespace Hyper {
 
       auto parent (size_t index, size_t depth) {
         auto offset = FlatTree::offset(index, depth);
-        return FlatTree::index(depth + T1, FlatTree::offset(offset) >> T1);
+        return FlatTree::index(depth + T1, rightShift(offset));
       }
 
       auto parent (size_t index) {
@@ -338,6 +338,37 @@ namespace Hyper {
           this->index += this->factor / T2;
           this->offset = T2 * this->offset + T1;
           return this->index;
+        }
+
+        size_t nextTree () {
+          this->index = this->index + this->factor / T2 + T1;
+          this->offset = this->index / T2;
+          this->factor = T2;
+          return this->index;
+        }
+
+        size_t prevTree () {
+          if (!static_cast<bool>(this->offset)) {
+            this->index = 0;
+            this->factor = 2;
+          } else {
+            this->index = this->index - this->factor / T2 - T1;
+            this->offset = this->index / T2;
+            this->factor = T2;
+          }
+          return this->index;
+        }
+
+        size_t fullRoot (size_t index) {
+          if (index <= this->index || (this->index & 1) > T0) {
+            return false;
+          }
+          while (index > this->index + this->factor + this->factor / 2) {
+            this->index += this->factor / 2;
+            this->factor *= 2;
+            this->offset /= 2;
+          }
+          return true;
         }
       };
     } // namespace FlatTree
