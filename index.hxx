@@ -7,6 +7,7 @@
 namespace Hyper {
   namespace Core {
     namespace FlatTree {
+      using size_t = uint64_t;
       size_t T0 = 0;
       size_t T1 = 1;
       size_t T2 = 2;

@@ -39,9 +39,9 @@ int main() {
   // this deviates from the original implementation.
   //
   ASSERT("children 0", FlatTree::children(0).empty())
-  ASSERT("children 1", FlatTree::children(1) == std::vector<size_t> { 0, 2 })
-  ASSERT("children 3", FlatTree::children(3) == std::vector<size_t> { 1, 5 })
-  ASSERT("children 9", FlatTree::children(9) == std::vector<size_t> { 8, 10 })
+  ASSERT("children 1", FlatTree::children(1) == std::vector<FlatTree::size_t> { 0, 2 })
+  ASSERT("children 3", FlatTree::children(3) == std::vector<FlatTree::size_t> { 1, 5 })
+  ASSERT("children 9", FlatTree::children(9) == std::vector<FlatTree::size_t> { 8, 10 })
 
   ASSERT("leftChild 0", FlatTree::leftChild(0) == -1)
   ASSERT("leftChild 1", FlatTree::leftChild(1) == 0)
@@ -57,11 +57,11 @@ int main() {
   ASSERT("sibling 5", FlatTree::sibling(5) == 1)
 
   ASSERT("fullRoots 0", FlatTree::fullRoots(0).empty())
-  ASSERT("fullRoots 2", FlatTree::fullRoots(2) == std::vector<size_t> { 0 })
-  ASSERT("fullRoots 8", FlatTree::fullRoots(8) == std::vector<size_t> { 3 })
-  ASSERT("fullRoots 20", FlatTree::fullRoots(20) == std::vector<size_t> { 7, 17 })
-  ASSERT("fullRoots 18", FlatTree::fullRoots(18) == std::vector<size_t> { 7, 16 })
-  ASSERT("fullRoots 16", FlatTree::fullRoots(16) == std::vector<size_t> { 7 })
+  ASSERT("fullRoots 2", FlatTree::fullRoots(2) == std::vector<FlatTree::size_t> { 0 })
+  ASSERT("fullRoots 8", FlatTree::fullRoots(8) == std::vector<FlatTree::size_t> { 3 })
+  ASSERT("fullRoots 20", FlatTree::fullRoots(20) == std::vector<FlatTree::size_t> { 7, 17 })
+  ASSERT("fullRoots 18", FlatTree::fullRoots(18) == std::vector<FlatTree::size_t> { 7, 16 })
+  ASSERT("fullRoots 16", FlatTree::fullRoots(16) == std::vector<FlatTree::size_t> { 7 })
 
   ASSERT("depth 0", FlatTree::depth(0) == 0)
   ASSERT("depth 1", FlatTree::depth(1) == 1)
@@ -75,11 +75,11 @@ int main() {
   ASSERT("offset 3", FlatTree::offset(3) == 0)
   ASSERT("offset 4", FlatTree::offset(4) == 2)
 
-  ASSERT("spans 0", FlatTree::spans(0) == std::vector<size_t> { 0, 0 })
-  ASSERT("spans 1", FlatTree::spans(1) == std::vector<size_t> { 0, 2 })
-  ASSERT("spans 3", FlatTree::spans(3) == std::vector<size_t> { 0, 6 })
-  ASSERT("spans 23", FlatTree::spans(23) == std::vector<size_t> { 16, 30 })
-  ASSERT("spans 27", FlatTree::spans(27) == std::vector<size_t> { 24, 30 })
+  ASSERT("spans 0", FlatTree::spans(0) == std::vector<FlatTree::size_t> { 0, 0 })
+  ASSERT("spans 1", FlatTree::spans(1) == std::vector<FlatTree::size_t> { 0, 2 })
+  ASSERT("spans 3", FlatTree::spans(3) == std::vector<FlatTree::size_t> { 0, 6 })
+  ASSERT("spans 23", FlatTree::spans(23) == std::vector<FlatTree::size_t> { 16, 30 })
+  ASSERT("spans 27", FlatTree::spans(27) == std::vector<FlatTree::size_t> { 24, 30 })
 
   ASSERT("leftSpan 0", FlatTree::leftSpan(0) == 0)
   ASSERT("leftSpan 1", FlatTree::leftSpan(1) == 0)
@@ -103,7 +103,7 @@ int main() {
   ASSERT("parent > int32", FlatTree::parent(10000000000) == 10000000001)
 
   ASSERT("twopow 34", FlatTree::twoPow(34) == 17179869184)
-  ASSERT("twopow 63", FlatTree::twoPow(63) == 9223372036854775808)
+  ASSERT("twopow 63", FlatTree::twoPow(63) == 9223372036854775808ULL)
 
   {
     size_t child = 0;
