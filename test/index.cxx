@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <random>
 
 #define ASSERT(message, ...) do { \
   if(!(__VA_ARGS__)) { \
@@ -18,12 +19,11 @@
 int main() {
   namespace FlatTree = Hyper::Core::FlatTree;
 
-  int plan = 81;
+  int plan = 111;
   int count = 0;
 
   ASSERT("base blocks 0", FlatTree::index(0, 0) == 0)
   ASSERT("base blocks 2", FlatTree::index(0, 1) == 2)
-  ASSERT("base blocks 4", FlatTree::index(0, 2) == 4)
   ASSERT("base blocks 4", FlatTree::index(0, 2) == 4)
 
   ASSERT("parents 1", FlatTree::index(1, 0) == 1)
@@ -136,13 +136,53 @@ int main() {
   {
     FlatTree::Iterator it(1);
 
-    ASSERT("iterator index == 1", it.index == 1)
-    ASSERT("iterator parent() == 3", it.parent() == 3)
-    ASSERT("iterator parent() == 7", it.parent() == 7)
-    ASSERT("iterator rightChild() == 11", it.rightChild() == 11)
-    ASSERT("iterator leftChild == 9", it.leftChild() == 9)
-    ASSERT("iterator next() == 13", it.next() == 13)
-    ASSERT("iterator leftSpan() == 12", it.leftSpan() == 12)
+    ASSERT("nonleaf index == 1", it.index == 1)
+    ASSERT("nonleaf parent() == 3", it.parent() == 3)
+    ASSERT("nonleaf parent() == 7", it.parent() == 7)
+    ASSERT("nonleaf rightChild() == 11", it.rightChild() == 11)
+    ASSERT("nonleaf leftChild == 9", it.leftChild() == 9)
+    ASSERT("nonleaf next() == 13", it.next() == 13)
+    ASSERT("nonleaf leftSpan() == 12", it.leftSpan() == 12)
+  }
+
+  {
+    FlatTree::Iterator it(0);
+
+    ASSERT("iterator fullRoot(0) == false", it.fullRoot(0) == false)
+
+    ASSERT("iterator fullRoot(22) == true", it.fullRoot(22) == true)
+    ASSERT("iterator index == 7", it.index == 7)
+
+    ASSERT("iterator nextTree() == 16", it.nextTree() == 16)
+
+    ASSERT("iterator fullRoot(22) == true", it.fullRoot(22) == true)
+    ASSERT("iterator index == 17", it.index == 17)
+
+    ASSERT("iterator nextTree() == 20", it.nextTree() == 20)
+
+    ASSERT("iterator fullRoot(22) == true", it.fullRoot(22) == true)
+    ASSERT("iterator index == 20", it.index == 20)
+
+    ASSERT("iterator nextTree() == 22", it.nextTree() == 22)
+    ASSERT("iterator.fullRoot(22) == false", it.fullRoot(22) == false)
+  }
+
+  {
+    std::random_device randdev;
+    std::mt19937 randgen(randdev());
+    for (int i = 0; i < 10; i++) {
+        FlatTree::Iterator it(0);
+        size_t tree = static_cast<size_t>(std::generate_canonical<double, 32>(randgen) * 0xffffffff) * 2;
+        std::vector<size_t> expected = FlatTree::fullRoots(tree);
+        std::vector<size_t> actual;
+
+        for (; it.fullRoot(tree); it.nextTree()) {
+            actual.push_back(it.index);
+        }
+
+        ASSERT("big full root " << i << " actual == expected", actual == expected);
+        ASSERT("big full root " << i << " fullRoot(tree) == false", it.fullRoot(tree) == false);
+    }
   }
 
   ASSERT("PLAN == COUNT", plan == count)
